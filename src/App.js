@@ -8,6 +8,8 @@ import SignUp from "./components/Pages/Shared/SignUp/SignUp";
 import Footer from "./components/Pages/Shared/Footer/Footer";
 import LogIn from "./components/Pages/Shared/LogIn/LogIn";
 import Blog from "./components/Pages/Blog/Blog";
+import Inventory from "./components/Pages/Inventory/Inventory";
+import Itemdetails from "./components/Pages/ItemDetails/Itemdetails";
 
 function App() {
   return (
@@ -16,9 +18,12 @@ function App() {
 
       <Nav></Nav>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/LogIn" element={<LogIn />} />
+        <Route path="/inventory" element={<Inventory />} />
+        <Route path="/inventory:itemid" element={<Itemdetails />} />
 
         <Route path="/Blog" element={<Blog />} />
         <Route path="about" element={<About />} />

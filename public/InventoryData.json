@@ -3,70 +3,70 @@
         "id":1,
         "name": "Putin",
         "img": "https://i.ibb.co/89L7P9z/Putin.jpg",
-        "ratings": 4.1,
+        "quantity": 4,
         "comments": "bolʹshoy"
     },
     {   
         "id":2,
         "name": "Biden",
         "img": "https://i.ibb.co/ZfXfPCr/Biden.jpg",
-        "ratings": 4.3,
+        "quantity": 4,
         "comments": "Awesome"
     },
     {  
         "id":3,
         "name": "Boris",
         "img": "https://i.ibb.co/fdm2vsy/Boris.jpg",
-        "ratings": 4.6,
+        "quantity": 4,
         "comments": "Marvellous"
     },
     {
         "id":4,
         "name": "Modi",
         "img": "https://i.ibb.co/5xmqggQ/Modi.jpg",
-        "ratings": 5,
+        "quantity": 5,
         "comments": "BahutKhub"
     },
     {
         "id":5,
         "name": "Shabaz",
         "img": "https://i.ibb.co/r0htRMF/Shabaz.jpg",
-        "ratings": 4.1,
+        "quantity": 0,
         "comments": "Mashallah"
     },
     {
         "id":6,
         "name": "Zelenski",
         "img": "https://i.ibb.co/qYDWFHZ/Zelensky.jpg",
-        "ratings": 4.0,
+        "quantity": 4,
         "comments": "I need more"
     },
     {
         "id":7,
         "name": "Zelenski",
         "img": "https://i.ibb.co/qYDWFHZ/Zelensky.jpg",
-        "ratings": 4.0,
+        "quantity": 0,
         "comments": "I need more"
     },
     {
         "id":8,
         "name": "Zelenski",
         "img": "https://i.ibb.co/qYDWFHZ/Zelensky.jpg",
-        "ratings": 4.0,
+        "quantity": 4,
         "comments": "I need more"
     },
     {
         "id":9,
         "name": "Zelenski",
         "img": "https://i.ibb.co/qYDWFHZ/Zelensky.jpg",
-        "ratings": 4.0,
+        "quantity": 4,
         "comments": "I need more"
     },
     {
         "id":10,
         "name": "Zelenski",
         "img": "https://i.ibb.co/qYDWFHZ/Zelensky.jpg",
-        "ratings": 4.0,
+        "quantity": 4,
         "comments": "I need more"
     }
 ]
