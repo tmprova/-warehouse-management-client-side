@@ -10,6 +10,8 @@ import LogIn from "./components/Pages/Shared/LogIn/LogIn";
 import Blog from "./components/Pages/Blog/Blog";
 import Inventory from "./components/Pages/Inventory/Inventory";
 import Itemdetails from "./components/Pages/ItemDetails/Itemdetails";
+import AddItem from "./components/Pages/ItemAdd/AddItem";
+import NotFound from "./components/Pages/Shared/NotFound/NotFound";
 
 function App() {
   return (
@@ -23,10 +25,12 @@ function App() {
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/LogIn" element={<LogIn />} />
         <Route path="/inventory" element={<Inventory />} />
-        <Route path="/inventory:itemid" element={<Itemdetails />} />
+        <Route path="/inventory/:itemid" element={<Itemdetails />} />
 
+        <Route path="/additem" element={<AddItem />} />
         <Route path="/Blog" element={<Blog />} />
         <Route path="about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer></Footer>
     </div>

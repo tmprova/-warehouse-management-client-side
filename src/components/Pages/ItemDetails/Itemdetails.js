@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const Itemdetails = () => {
-  const { productId } = useParams();
-  console.log(useParams);
+  const { itemid } = useParams();
+  // console.log(params);
   const [items, setItems] = useState({});
 
-  return <div>name:{productId}</div>;
+  // useEffect(() => {
+  //   const url = `InventoryData${itemid}`;
+  //   fetch(url)
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data));
+  // }, [itemid]);
+
+  return <div>name:{itemid}</div>;
 };
 
 export default Itemdetails;
