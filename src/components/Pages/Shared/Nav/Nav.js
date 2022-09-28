@@ -20,12 +20,12 @@ const NavBar = () => {
         <ul className="flex items-center hidden space-x-8 lg:flex">
           <li>
             <CustomLink
-              to={"/About"}
-              aria-label="Our product"
-              title="Our product"
+              to={"/Inventory"}
+              aria-label="Our Storage"
+              title="Our Storage"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Product
+              Inventory
             </CustomLink>
           </li>
           <li>
