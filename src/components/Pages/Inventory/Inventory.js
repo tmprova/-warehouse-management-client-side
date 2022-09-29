@@ -1,10 +1,16 @@
-import React, { useState } from "react";
-import useInventoryHook from "../../customHook/useInvenoryHook";
+import React, { useEffect, useState } from "react";
+// import useInventoryHook from "../../customHook/useInvenoryHook";
 import InventoryDetails from "./InventoryDetails";
 
 const Inventory = () => {
-  const [inventory, setInventory] = useInventoryHook();
+  const [storage, setStorage] = useState([]);
   const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/inventory")
+      .then((res) => res.json())
+      .then((data) => setStorage(data));
+  }, []);
 
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -48,9 +54,9 @@ const Inventory = () => {
         </p>
       </div>
       <div className="grid max-w-md gap-10 row-gap-8 lg:max-w-screen-lg sm:row-gap-10 lg:grid-cols-3 xl:max-w-screen-lg sm:mx-auto">
-        {inventory.map((item) => (
+        {storage.map((item) => (
           <InventoryDetails
-            key={item.id}
+            key={item._id}
             item={item}
             load={load}
             setLoad={setLoad}
