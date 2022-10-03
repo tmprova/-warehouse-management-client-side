@@ -52,7 +52,7 @@ const HomeStoreage = () => {
         </p>
       </div>
       <div className="grid max-w-md gap-10 row-gap-8 lg:max-w-screen-lg sm:row-gap-10 lg:grid-cols-3 xl:max-w-screen-lg sm:mx-auto">
-        {items.map((item) => (
+        {items?.slice(0, 6).map((item) => (
           <HomeItem key={item._id} item={item}></HomeItem>
         ))}
       </div>
