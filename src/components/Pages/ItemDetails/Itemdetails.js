@@ -61,8 +61,10 @@ const Itemdetails = () => {
               <h1>Price: {Price}</h1>
               <h1>Production: {Production}</h1>
               <h1>Manufacturer: {Manufacturer}</h1>
-              <div>
-                <button class="inline-flex items-center justify-center space-x-2 py-3 px-4 border border-transparent text-sm font-medium rounded text-white bg-green-600 hover:bg-green-700 transition-colors">
+
+              <h1 className="text-3xl mt-4 mb-2">
+                Delivery from :
+                <button class="inline-flex items-center justify-center space-x-2 py-2 px-3 mx-1 border border-transparent text-sm font-medium rounded text-white bg-green-600 hover:bg-green-700 transition-colors">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="h-6 w-6"
@@ -79,13 +81,19 @@ const Itemdetails = () => {
                   </svg>
                   <div>Delivered</div>
                 </button>
-              </div>
-              <h1 className="text-3xl mt-4">Update the inventory :</h1>
+              </h1>
               <hr />
               <ItemAddToStock></ItemAddToStock>
             </div>
             <div className="flex order-1 md:order-2 justify-center items-center">
-              <img src={IMG ? IMG : "not available"} alt="bikeImg" />
+              <img
+                src={
+                  IMG
+                    ? IMG
+                    : "https://i.ibb.co/NL6n93t/Honda-Cb750-Gear-Patrol.jpg"
+                }
+                alt="bikeImg"
+              />
             </div>
           </div>
         </div>

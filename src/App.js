@@ -28,6 +28,7 @@ function App() {
         <Route path="/inventory/:itemid" element={<Itemdetails />} />
 
         <Route path="/additem" element={<AddItem />} />
+        {/* <Route path="/additem" element={<AddItem />} /> */}
         <Route path="/Blog" element={<Blog />} />
         <Route path="about" element={<About />} />
         <Route path="*" element={<NotFound />} />

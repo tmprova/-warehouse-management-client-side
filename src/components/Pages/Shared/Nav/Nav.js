@@ -30,12 +30,12 @@ const NavBar = () => {
           </li>
           <li>
             <CustomLink
-              to={"/Home"}
+              to={"/AddItem"}
               aria-label="Our product"
               title="Our product"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Features
+              Add Item
             </CustomLink>
           </li>
           <li>
@@ -45,7 +45,7 @@ const NavBar = () => {
               title="Product pricing"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Pricing
+              My Item
             </CustomLink>
           </li>
           <li>
