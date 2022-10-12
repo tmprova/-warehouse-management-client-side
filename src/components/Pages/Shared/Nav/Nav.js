@@ -40,7 +40,7 @@ const NavBar = () => {
           </li>
           <li>
             <CustomLink
-              to={"/Home"}
+              to={"/MyItem"}
               aria-label="Product pricing"
               title="Product pricing"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"

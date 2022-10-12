@@ -1,7 +1,48 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../../firebase/firebase.init";
+import Loading from "../../../Loading/Loading";
 
 const SignUp = () => {
+  const [agree, setAgree] = useState(false);
+  //  const name=useRef("");
+  const nameRef = useRef("");
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth, {
+    sendEmailVerification: true,
+  });
+
+  const navigate = useNavigate();
+
+  const navigateLogin = () => {
+    navigate("/login");
+  };
+
+  if (loading || updating) {
+    return <Loading />;
+  }
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    // const name = e.target.name.value;
+    const name = nameRef.current.value;
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    await createUserWithEmailAndPassword(email, password);
+    await updateProfile({ displayName: name });
+    // toast('Updated profile');
+    navigate("/");
+  };
+
   return (
     <div className="bg-gray-800">
       <div className="p-8 lg:w-1/2 mx-auto">
@@ -57,13 +98,15 @@ const SignUp = () => {
             {" "}
             Or sign up with credentials{" "}
           </p>
-          <form className="mt-6">
+          <form className="mt-6" onSubmit={handleSignUp}>
             <div className="relative">
               <input
                 className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
                 id="username"
                 type="text"
                 placeholder="Name"
+                ref={nameRef}
+                required
               />
               <div className="absolute left-0 inset-y-0 flex items-center">
                 <svg
@@ -82,6 +125,8 @@ const SignUp = () => {
                 id="username"
                 type="text"
                 placeholder="Email"
+                ref={emailRef}
+                required
               />
               <div className="absolute left-0 inset-y-0 flex items-center">
                 <svg
@@ -101,6 +146,8 @@ const SignUp = () => {
                 id="username"
                 type="text"
                 placeholder="Password"
+                ref={passwordRef}
+                required
               />
               <div className="absolute left-0 inset-y-0 flex items-center">
                 <svg
@@ -114,13 +161,14 @@ const SignUp = () => {
               </div>
             </div>
 
-            <p className="mt-4 italic text-gray-500 font-light text-xs">
+            {/* <p className="mt-4 italic text-gray-500 font-light text-xs">
               Password strength:{" "}
               <span className="font-bold text-green-400">strong</span>
-            </p>
+            </p> */}
             <div className="mt-4 flex items-center text-gray-500">
               {" "}
               <input
+                onClick={() => setAgree(!agree)}
                 type="checkbox"
                 id="remember"
                 name="remember"
@@ -129,7 +177,7 @@ const SignUp = () => {
               <label className="text-sm" htmlFor="remember">
                 I agree with the{" "}
                 <Link
-                  to={"About"}
+                  to={"/About"}
                   className="text-indigo-400 hover:text-indigo-500"
                 >
                   Privacy Policy
@@ -138,12 +186,25 @@ const SignUp = () => {
             </div>
             <div className="flex items-center justify-center mt-8">
               {" "}
-              <button className="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+              <button
+                disabled={!agree}
+                className="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+              >
                 {" "}
                 Create Account{" "}
               </button>{" "}
             </div>
           </form>
+          <p className="text-md mt-1 font-bold">
+            Already have an account?
+            <Link
+              to={"/login"}
+              className="text-green-400 hover:text-green-600 mx-1"
+              onClick={navigateLogin}
+            >
+              Please LogIn
+            </Link>
+          </p>
         </div>
       </div>
     </div>
