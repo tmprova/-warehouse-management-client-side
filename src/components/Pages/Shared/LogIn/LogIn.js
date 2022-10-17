@@ -1,6 +1,68 @@
-import React from "react";
+import React, { useRef } from "react";
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+import { useLocation, useNavigate } from "react-router-dom";
+import auth from "../../../firebase/firebase.init";
+import Loading from "../../../Loading/Loading";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const LogIn = () => {
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, GoogleLoading, googleError] =
+    useSignInWithGoogle(auth);
+
+  const [sendPasswordResetEmail, sending, resetError] =
+    useSendPasswordResetEmail(auth);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+  let errorShown;
+
+  if (loading || sending || GoogleLoading) {
+    return <Loading></Loading>;
+  }
+  if (user) {
+    navigate(from, { replace: true });
+  }
+  if (error || googleError || resetError) {
+    errorShown = (
+      <p className="text-red-500 font-bold">
+        Error:{error?.message} {googleError?.message} {resetError?.message}
+      </p>
+    );
+  }
+
+  const handleSingIn = async (e) => {
+    e.preventDefault();
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    await signInWithEmailAndPassword(email, password);
+    // const {data} = await axios.post('http://localhost:5000//login', {email});
+    // localStorage.setItem('accessToken', data.accessToken);
+    // console.log(data);
+    navigate(from, { replace: true });
+  };
+
+  const passwordReset = async () => {
+    const email = emailRef.current.value;
+    if (email) {
+      await sendPasswordResetEmail(email);
+      toast("Successfully sent email");
+    } else {
+      toast("Please provide a valid email");
+    }
+  };
+
   return (
     <div className="bg-gray-800">
       <div className="p-8 lg:w-1/2 mx-auto">
@@ -23,7 +85,10 @@ const LogIn = () => {
                 </svg>
                 Github
               </button>
-              <button className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+              <button
+                onClick={() => signInWithGoogle()}
+                className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6 mr-3"
@@ -55,11 +120,12 @@ const LogIn = () => {
           <p className="text-center text-sm text-gray-500 font-light">
             Or sign in with credentials
           </p>
-          <form className="mt-6">
+          <form onSubmit={handleSingIn} className="mt-6">
             <div className="relative">
               <input
                 className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
                 id="username"
+                ref={emailRef}
                 type="text"
                 placeholder="Email"
               />
@@ -79,7 +145,8 @@ const LogIn = () => {
               <input
                 className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
                 id="username"
-                type="text"
+                ref={passwordRef}
+                type="password"
                 placeholder="Password"
               />
               <div className="absolute left-0 inset-y-0 flex items-center">
@@ -93,6 +160,7 @@ const LogIn = () => {
                 </svg>
               </div>
             </div>
+            {errorShown}
             <div className="mt-4 flex items-center text-gray-500">
               <input
                 type="checkbox"
@@ -107,6 +175,15 @@ const LogIn = () => {
                 Sign in
               </button>
             </div>
+            <p className="text-red-300 mt-1">
+              Forget Password?{" "}
+              <button
+                className="btn btn-link text-green-400 pe-auto text-decoration-none"
+                onClick={passwordReset}
+              >
+                Reset Password
+              </button>{" "}
+            </p>
           </form>
         </div>
       </div>

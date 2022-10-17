@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import {
   useCreateUserWithEmailAndPassword,
-  useUpdateProfile,
+  useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase/firebase.init";
 import Loading from "../../../Loading/Loading";
 
@@ -15,18 +15,34 @@ const SignUp = () => {
   const passwordRef = useRef("");
 
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
-  const [updateProfile, updating, updateError] = useUpdateProfile(auth, {
-    sendEmailVerification: true,
-  });
+    useCreateUserWithEmailAndPassword(auth, {
+      sendEmailVerification: true,
+    });
+
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
+    useSignInWithGoogle(auth);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const navigateLogin = () => {
     navigate("/login");
   };
+  let errorShown;
+  let from = location.state?.from?.pathname || "/";
 
-  if (loading || updating) {
+  if (user || googleUser) {
+    navigate(from, { replace: true });
+  }
+  if (error || googleError) {
+    errorShown = (
+      <p className="text-red-400 font-bold">
+        Error: {error?.message} {googleError?.message}
+      </p>
+    );
+  }
+
+  if (loading || googleLoading) {
     return <Loading />;
   }
 
@@ -38,9 +54,6 @@ const SignUp = () => {
     const password = passwordRef.current.value;
 
     await createUserWithEmailAndPassword(email, password);
-    await updateProfile({ displayName: name });
-    // toast('Updated profile');
-    navigate("/");
   };
 
   return (
@@ -65,7 +78,10 @@ const SignUp = () => {
                 </svg>
                 Github
               </button>
-              <button className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+              <button
+                onClick={() => signInWithGoogle()}
+                className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6 mr-3"
@@ -144,7 +160,7 @@ const SignUp = () => {
               <input
                 className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
                 id="username"
-                type="text"
+                type="password"
                 placeholder="Password"
                 ref={passwordRef}
                 required
@@ -160,7 +176,7 @@ const SignUp = () => {
                 </svg>
               </div>
             </div>
-
+            {errorShown}
             {/* <p className="mt-4 italic text-gray-500 font-light text-xs">
               Password strength:{" "}
               <span className="font-bold text-green-400">strong</span>

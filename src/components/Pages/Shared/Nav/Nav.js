@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CustomLink from "../../../CustomLink/CustomLink";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
+import auth from "../../../firebase/firebase.init";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user] = useAuthState(auth);
+
+  const handleSignOut = () => {
+    signOut(auth);
+  };
+
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <div className="relative flex items-center justify-between">
@@ -18,36 +27,40 @@ const NavBar = () => {
           </span>
         </Link>
         <ul className="flex items-center hidden space-x-8 lg:flex">
-          <li>
-            <CustomLink
-              to={"/Inventory"}
-              aria-label="Our Storage"
-              title="Our Storage"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              Inventory
-            </CustomLink>
-          </li>
-          <li>
-            <CustomLink
-              to={"/AddItem"}
-              aria-label="Our product"
-              title="Our product"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              Add Item
-            </CustomLink>
-          </li>
-          <li>
-            <CustomLink
-              to={"/MyItem"}
-              aria-label="Product pricing"
-              title="Product pricing"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              My Item
-            </CustomLink>
-          </li>
+          {user && (
+            <>
+              <li>
+                <CustomLink
+                  to={"/Inventory"}
+                  aria-label="Our Storage"
+                  title="Our Storage"
+                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  Inventory
+                </CustomLink>
+              </li>
+              <li>
+                <CustomLink
+                  to={"/AddItem"}
+                  aria-label="Our product"
+                  title="Our product"
+                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  Add Item
+                </CustomLink>
+              </li>
+              <li>
+                <CustomLink
+                  to={"/MyItem"}
+                  aria-label="Product pricing"
+                  title="Product pricing"
+                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  My Item
+                </CustomLink>
+              </li>
+            </>
+          )}
           <li>
             <CustomLink
               to={"/About"}
@@ -61,14 +74,25 @@ const NavBar = () => {
         </ul>
         <ul className="flex items-center hidden space-x-8 lg:flex">
           <li>
-            <CustomLink
-              to={"/SignUp"}
-              className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-400 hover:bg-blue-700 focus:shadow-outline focus:outline-none"
-              aria-label="Sign up"
-              title="Sign up"
-            >
-              Sign up
-            </CustomLink>
+            {user ? (
+              <CustomLink
+                onClick={handleSignOut}
+                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-300 hover:bg-blue-700 focus:shadow-outline focus:outline-none"
+                aria-label="Sign up"
+                title="Sign up"
+              >
+                Log out
+              </CustomLink>
+            ) : (
+              <CustomLink
+                to={"/SignUp"}
+                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-400 hover:bg-blue-700 focus:shadow-outline focus:outline-none"
+                aria-label="Sign up"
+                title="Sign up"
+              >
+                Sign up
+              </CustomLink>
+            )}
           </li>
         </ul>
         <div className="lg:hidden">
@@ -168,14 +192,25 @@ const NavBar = () => {
                       </CustomLink>
                     </li>
                     <li>
-                      <CustomLink
-                        to={"/SignUp"}
-                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-black transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                        aria-label="Sign up"
-                        title="Sign up"
-                      >
-                        Sign up
-                      </CustomLink>
+                      {user ? (
+                        <CustomLink
+                          onClick={handleSignOut}
+                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-black transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                          aria-label="Sign up"
+                          title="Sign up"
+                        >
+                          Log out
+                        </CustomLink>
+                      ) : (
+                        <CustomLink
+                          to={"/SignUp"}
+                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-black transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                          aria-label="Sign up"
+                          title="Sign up"
+                        >
+                          Sign up
+                        </CustomLink>
+                      )}
                     </li>
                   </ul>
                 </nav>

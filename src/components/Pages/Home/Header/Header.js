@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
+import auth from "../../../firebase/firebase.init";
 
 const Header = () => {
+  const [user] = useAuthState(auth);
+
+  const handleSignOut = () => {
+    signOut(auth);
+  };
+
   return (
     <div className="relative flex flex-col-reverse py-16 lg:pt-0 lg:flex-col lg:pb-0">
       <div className="inset-y-0 top-0 right-0 z-0 w-full max-w-xl px-4 mx-auto md:px-0 lg:pr-0 lg:mb-0 lg:mx-0 lg:w-7/12 lg:max-w-full lg:absolute xl:px-0">
@@ -39,12 +48,21 @@ const Header = () => {
             quae. explicabo.
           </p>
           <div className="flex items-center">
-            <Link
-              to={"/LogIn"}
-              className="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-            >
-              Log In
-            </Link>
+            {user ? (
+              <Link
+                onClick={handleSignOut}
+                className="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-800 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+              >
+                Log out
+              </Link>
+            ) : (
+              <Link
+                to={"/LogIn"}
+                className="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+              >
+                Log In
+              </Link>
+            )}
             <Link
               to={"/Blog"}
               aria-label=""
