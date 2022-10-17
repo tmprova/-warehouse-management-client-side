@@ -42,7 +42,7 @@ const LogIn = () => {
     );
   }
 
-  const handleSingIn = async (e) => {
+  const handleLogIn = async (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
@@ -72,7 +72,7 @@ const LogIn = () => {
           </p>
           <div>
             <div className="flex items-center justify-center space-x-4 mt-3">
-              <button className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+              {/* <button className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
@@ -84,7 +84,7 @@ const LogIn = () => {
                   ></path>
                 </svg>
                 Github
-              </button>
+              </button> */}
               <button
                 onClick={() => signInWithGoogle()}
                 className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
@@ -120,7 +120,7 @@ const LogIn = () => {
           <p className="text-center text-sm text-gray-500 font-light">
             Or sign in with credentials
           </p>
-          <form onSubmit={handleSingIn} className="mt-6">
+          <form onSubmit={handleLogIn} className="mt-6">
             <div className="relative">
               <input
                 className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
@@ -160,15 +160,16 @@ const LogIn = () => {
                 </svg>
               </div>
             </div>
-            {errorShown}
+
             <div className="mt-4 flex items-center text-gray-500">
-              <input
+              {/* <input
                 type="checkbox"
                 id="remember"
                 name="remember"
                 className="mr-3"
               />
-              <label htmlFor="remember">Remember me</label>
+              <label htmlFor="remember">Remember me</label> */}
+              {errorShown}
             </div>
             <div className="flex items-center justify-center mt-8">
               <button className="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">

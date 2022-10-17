@@ -18,12 +18,12 @@ const NavBar = () => {
       <div className="relative flex items-center justify-between">
         <Link
           to={"/Home"}
-          aria-label="Company"
-          title="Company"
+          aria-label="VinBike"
+          title="VinBike"
           className="inline-flex items-center"
         >
-          <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-            Company
+          <span className="ml-2 text-xl font-bold tracking-wide text-gray-800">
+            VinBike
           </span>
         </Link>
         <ul className="flex items-center hidden space-x-8 lg:flex">
@@ -42,8 +42,8 @@ const NavBar = () => {
               <li>
                 <CustomLink
                   to={"/AddItem"}
-                  aria-label="Our product"
-                  title="Our product"
+                  aria-label="Added item"
+                  title="Add Item"
                   className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                 >
                   Add Item
@@ -52,8 +52,8 @@ const NavBar = () => {
               <li>
                 <CustomLink
                   to={"/MyItem"}
-                  aria-label="Product pricing"
-                  title="Product pricing"
+                  aria-label="My Item"
+                  title="My Item"
                   className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                 >
                   My Item
@@ -124,12 +124,12 @@ const NavBar = () => {
                   <div>
                     <CustomLink
                       to={"/Home"}
-                      aria-label="Company"
-                      title="Company"
+                      aria-label="VinBike"
+                      title="VinBike"
                       className="inline-flex items-center"
                     >
                       <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                        Company
+                        VinBike
                       </span>
                     </CustomLink>
                   </div>
@@ -151,36 +151,40 @@ const NavBar = () => {
                 </div>
                 <nav>
                   <ul className="space-y-4">
-                    <li>
-                      <CustomLink
-                        to={"/Home"}
-                        aria-label="Our product"
-                        title="Our product"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                      >
-                        Product
-                      </CustomLink>
-                    </li>
-                    <li>
-                      <CustomLink
-                        to={"/Home"}
-                        aria-label="Our product"
-                        title="Our product"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                      >
-                        Features
-                      </CustomLink>
-                    </li>
-                    <li>
-                      <CustomLink
-                        to={"/Home"}
-                        aria-label="Product pricing"
-                        title="Product pricing"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                      >
-                        Pricing
-                      </CustomLink>
-                    </li>
+                    {user && (
+                      <>
+                        <li>
+                          <CustomLink
+                            to={"/Inventory"}
+                            aria-label="Our Storage"
+                            title="Our Storage"
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          >
+                            Inventory
+                          </CustomLink>
+                        </li>
+                        <li>
+                          <CustomLink
+                            to={"/AddItem"}
+                            aria-label="Added item"
+                            title="Add Item"
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          >
+                            Add Item
+                          </CustomLink>
+                        </li>
+                        <li>
+                          <CustomLink
+                            to={"/MyItem"}
+                            aria-label="My Item"
+                            title="My Item"
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          >
+                            My Item
+                          </CustomLink>
+                        </li>
+                      </>
+                    )}
                     <li>
                       <CustomLink
                         to={"/About"}
