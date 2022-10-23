@@ -1,7 +1,7 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./components/Pages/Home/Home";
 import About from "./components/Pages/About/About";
 import "./App.css";

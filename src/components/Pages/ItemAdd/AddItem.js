@@ -178,23 +178,24 @@ const AddItem = () => {
               id="Price"
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
               placeholder="Negotiable"
-              disabled
+              value="Negotiable"
+              readOnly
             />{" "}
           </div>{" "}
           <div>
             {" "}
             <label
-              htmlFor="brithday"
+              htmlFor="Transmission"
               className="text-sm text-gray-700 block mb-1 font-medium"
             >
-              Birthday
+              Transmission
             </label>{" "}
             <input
               type="text"
-              name="brithday"
-              id="brithday"
+              name="Transmission"
+              id="Transmission"
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
-              placeholder="(01/01/1993)"
+              placeholder="Transmission"
             />{" "}
           </div>{" "}
           <div>
@@ -206,7 +207,9 @@ const AddItem = () => {
               Quantity
             </label>{" "}
             <input
-              type="text"
+              type="number"
+              min="0"
+              max="10"
               name="Quatity"
               id="Quantity"
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"

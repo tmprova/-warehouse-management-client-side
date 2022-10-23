@@ -6,7 +6,6 @@ import HomeStoreage from "./HomeStore/HomeStoreage";
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
       <Header></Header>
       {/* <Inventory></Inventory> */}
       <HomeStoreage></HomeStoreage>

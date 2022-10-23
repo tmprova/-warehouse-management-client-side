@@ -9,7 +9,7 @@ import auth from "../../../firebase/firebase.init";
 import Loading from "../../../Loading/Loading";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+// import axios from "axios";
 
 const LogIn = () => {
   const emailRef = useRef("");
@@ -128,6 +128,7 @@ const LogIn = () => {
                 ref={emailRef}
                 type="text"
                 placeholder="Email"
+                required
               />
               <div className="absolute left-0 inset-y-0 flex items-center">
                 <svg
@@ -144,10 +145,11 @@ const LogIn = () => {
             <div className="relative mt-3">
               <input
                 className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
-                id="username"
+                id="password"
                 ref={passwordRef}
                 type="password"
                 placeholder="Password"
+                required
               />
               <div className="absolute left-0 inset-y-0 flex items-center">
                 <svg

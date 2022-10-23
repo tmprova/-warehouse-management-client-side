@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import Loading from "../../Loading/Loading";
 import ItemAddToStock from "./ItemAddToStock";
 
@@ -37,6 +38,35 @@ const Itemdetails = () => {
     };
     getInventories();
   }, [items, itemid]);
+
+  // update the stocks
+
+  const quantityUpgrade = (e) => {
+    e.preventDefault();
+    const quantity = e.target.add.value;
+    console.log("quantity", quantity);
+    if (quantity >= 1) {
+      const updatedQuantity = parseInt(quantity) + parseInt(Quatity);
+      const url = `http://localhost:5000/itemAddToStock/${itemid}`;
+      fetch(url, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ updatedQuantity }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("updatedQuantity", data);
+          if (data.modifiedCount === 1 || data.matchedCount === 1) {
+            toast.success("Successfully Updated");
+          }
+          setLoading(!loading);
+          e.target.reset();
+        });
+    }
+  };
 
   return (
     <>
@@ -83,7 +113,56 @@ const Itemdetails = () => {
                 </button>
               </h1>
               <hr />
-              <ItemAddToStock></ItemAddToStock>
+              <ItemAddToStock
+                // Quatity={Quatity}
+                quantityUpgrade={quantityUpgrade}
+              ></ItemAddToStock>
+              {/* <div className="p-8 rounded border border-gray-200">
+                {" "}
+                <h1 className="font-medium text-3xl">Add Stock</h1>{" "}
+                <p className="text-gray-600 mt-6">
+                  Here user can update some quantity of stored bikes...
+                </p>
+                <form onSubmit={quantityUpgrade}>
+                  <div className="mt-8 space-y-6">
+                    {" "}
+                    <div>
+                      {" "}
+                      <label
+                        htmlFor="floatingInput"
+                        className="text-sm text-gray-700 block mb-1 font-medium"
+                      >
+                        Add <br />
+                        (can not add more then 10)
+                      </label>
+                      <input
+                        type="number"
+                        max="10"
+                        name="add"
+                        id="name"
+                        required
+                        className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
+                        placeholder="Add to stock..."
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor=""
+                        className="text-sm text-gray-700 block mb-1 font-medium"
+                      >
+                        Update Stock Information
+                      </label>{" "}
+                      <input
+                        type="submit"
+                        name="update"
+                        id="submit"
+                        className="border  bg-blue-500 text-white rounded  border-gray-200 py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 w-full"
+                        placeholder="Update"
+                      />{" "}
+                    </div>
+                  </div>
+                </form>
+              </div> */}
             </div>
             <div className="flex order-1 md:order-2 justify-center items-center">
               <img

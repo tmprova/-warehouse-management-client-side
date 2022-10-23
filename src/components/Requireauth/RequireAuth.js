@@ -5,7 +5,7 @@ import {
 } from "react-firebase-hooks/auth";
 import { Navigate, useLocation } from "react-router-dom";
 import auth from "../firebase/firebase.init";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Loading from "../Loading/Loading";
@@ -21,7 +21,7 @@ const RequireAuth = ({ children }) => {
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
-  if (!user.emailVerified) {
+  if (user.providerData[0]?.providerId === "password" && !user.emailVerified) {
     return (
       <div className="text-center mt-5 py-5 section">
         <div>
