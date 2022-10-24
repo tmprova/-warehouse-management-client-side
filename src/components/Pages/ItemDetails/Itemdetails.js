@@ -39,6 +39,20 @@ const Itemdetails = () => {
     getInventories();
   }, [items, itemid]);
 
+  // delivered item
+  const handleDelivery = (id) => {
+    const getQuantity = async () => {
+      const newUpdate = { Quatity };
+      const url = `http://localhost:5000/itemDelivered/${_id}`;
+      const { data } = await axios.put(url, newUpdate);
+      console.log(data);
+      if (data.modifiedCount) {
+        toast.success("Successfully Delivered", { id: "test" });
+      }
+    };
+    getQuantity();
+  };
+
   // update the stocks
 
   const quantityUpgrade = (e) => {
@@ -79,7 +93,7 @@ const Itemdetails = () => {
               <h1 className="text-3xl">General Info:</h1>
               <hr />
               <h1>Bike Name: {Name}</h1>
-              <h1>In Storage: {Quatity}</h1>
+              <h1>In Storage: {Quatity ? Quatity : "Stock out"}</h1>
               <h1>Origin: {Assembly ? Assembly : "Not Available"}</h1>
               <h1>Bike Class: {Class}</h1>
               <h1>Engine: {Engine}</h1>
@@ -94,7 +108,10 @@ const Itemdetails = () => {
 
               <h1 className="text-3xl mt-4 mb-2">
                 Delivery from :
-                <button className="inline-flex items-center justify-center space-x-2 py-2 px-3 mx-1 border border-transparent text-sm font-medium rounded text-white bg-green-600 hover:bg-green-700 transition-colors">
+                <button
+                  onClick={handleDelivery}
+                  className="inline-flex items-center justify-center space-x-2 py-2 px-3 mx-1 border border-transparent text-sm font-medium rounded text-white bg-green-600 hover:bg-green-700 transition-colors"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
