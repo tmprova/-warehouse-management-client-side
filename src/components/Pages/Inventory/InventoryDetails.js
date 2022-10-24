@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 // import { isHtmlElement } from "react-router-dom/dist/dom";
 
 const InventoryDetails = ({ item, load, setLoad }) => {
@@ -12,23 +13,21 @@ const InventoryDetails = ({ item, load, setLoad }) => {
     navigate(`/inventory/${_id}`);
   };
 
-  const handleDelete = (_id) => {
-    console.log(_id);
+  const handleDelete = (id) => {
+    console.log(id);
+    const proceed = window.confirm("Are you sure?");
+    if (proceed) {
+      const url = `http://localhost:5000/inventoryDetails/${id}`;
+      fetch(url, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setLoad(!load);
+          toast.success("succesfully deleted");
+        });
+    }
   };
-
-  //   const handleDelete = id => {
-  //     const proceed = window.confirm('Are you sure you want to delete?');
-  //     if (proceed) {
-  //         const url = `https://blooming-lowlands-09292.herokuapp.com/inventory/${id}`;
-  //         fetch(url, {
-  //             method: 'DELETE'
-  //         })
-  //             .then(res => res.json())
-  //             .then(data => {
-  //                 setLoad(!load)
-  //             })
-  //     }
-  // }
 
   return (
     <div className="w-80 bg-white shadow rounded border border-transparent hover:border-blue-500 cursor-pointer m-10">
