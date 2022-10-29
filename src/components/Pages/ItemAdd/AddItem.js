@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
+import auth from "../../firebase/firebase.init";
 // / Name,
 // IMG,
 // Manufacturer,
@@ -7,11 +10,53 @@ import React from "react";
 // Class,
 // Engine,
 // Power,
+// https://i.ibb.co/xXNZ4Hm/vincent-shadow.jpg
+// const user= useAuthState(auth)
 // Transmission,
 // Brakes,
 // Price,
 // Quatity/
 const AddItem = () => {
+  const [load, setLoad] = useState(false);
+  const user = useAuthState(auth);
+  console.log(user[0].email);
+  const handleAddItem = (e) => {
+    e.preventDefault();
+
+    const data = {
+      Name: e.target.name.value,
+      IMG: e.target.image.value,
+      Manufacturer: e.target.Manufacturer.value,
+      Production: e.target.Production.value,
+      Assembly: e.target.Assembly.value,
+      Class: e.target.Class.value,
+      Engine: e.target.Engine.value,
+      Power: e.target.Power.value,
+      Transmission: e.target.Transmission.value,
+      Brakes: e.target.Brakes.value,
+      Price: e.target.Price.value,
+      Quatity: e.target.Quatity.value,
+      Torque: e.target.Torque.value,
+      Weight: e.target.Weight.value,
+      email: user[0]?.email,
+    };
+    console.log("data", data);
+    const url = "http://localhost:5000/inventory";
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ data }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setLoad(!load);
+        toast.success("added item success");
+        e.target.reset();
+      });
+  };
+
   return (
     <div className="p-8 rounded border border-gray-200">
       <h1 className="font-medium text-3xl">Add Invntory</h1>
@@ -19,7 +64,7 @@ const AddItem = () => {
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos
         dolorem vel cupiditate laudantium dicta.
       </p>
-      <form>
+      <form onSubmit={handleAddItem}>
         <div className="mt-8 grid lg:grid-cols-2 gap-4">
           {" "}
           <div>
@@ -33,6 +78,7 @@ const AddItem = () => {
               type="text"
               name="name"
               id="name"
+              required
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
               placeholder="Enter Bike name"
             />
@@ -48,6 +94,7 @@ const AddItem = () => {
               type="text"
               name="IMG"
               id="image"
+              required
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
               placeholder="paste image link"
             />{" "}
@@ -64,6 +111,7 @@ const AddItem = () => {
               type="text"
               name="Manufacturer"
               id="Manufacturer"
+              required
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
               placeholder="(ex. Manufacturer)"
             />{" "}
@@ -80,6 +128,7 @@ const AddItem = () => {
               type="text"
               name="Production"
               id="Production"
+              required
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
               placeholder="year of production"
             />{" "}
@@ -96,6 +145,7 @@ const AddItem = () => {
               type="text"
               name="Assembly"
               id="Assembly"
+              required
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
               placeholder="factory/country of origin"
             />{" "}
@@ -112,6 +162,7 @@ const AddItem = () => {
               type="text"
               name="Class"
               id="Class"
+              required
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
               placeholder="Standard/Sports"
             />{" "}
@@ -128,6 +179,7 @@ const AddItem = () => {
               type="text"
               name="Engine"
               id="Engine"
+              required
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
               placeholder="Engine"
             />{" "}
@@ -144,6 +196,7 @@ const AddItem = () => {
               type="text"
               name="Power"
               id="Power"
+              required
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
               placeholder="Torque Power"
             />{" "}
@@ -160,6 +213,7 @@ const AddItem = () => {
               type="text"
               name="Brakes"
               id="Brakes"
+              required
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
               placeholder="Brakes"
             />{" "}
@@ -176,6 +230,7 @@ const AddItem = () => {
               type="text"
               name="Price"
               id="Price"
+              required
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
               placeholder="Negotiable"
               value="Negotiable"
@@ -194,6 +249,7 @@ const AddItem = () => {
               type="text"
               name="Transmission"
               id="Transmission"
+              required
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
               placeholder="Transmission"
             />{" "}
@@ -208,12 +264,47 @@ const AddItem = () => {
             </label>{" "}
             <input
               type="number"
-              min="0"
+              min="1"
               max="10"
               name="Quatity"
               id="Quantity"
+              required
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
               placeholder="Quantity"
+            />{" "}
+          </div>{" "}
+          <div>
+            {" "}
+            <label
+              htmlFor="Transmission"
+              className="text-sm text-gray-700 block mb-1 font-medium"
+            >
+              Torque
+            </label>{" "}
+            <input
+              type="text"
+              name="Torque"
+              id="Torque"
+              required
+              className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
+              placeholder="Torque"
+            />{" "}
+          </div>{" "}
+          <div>
+            {" "}
+            <label
+              htmlFor="Weight"
+              className="text-sm text-gray-700 block mb-1 font-medium"
+            >
+              Weight
+            </label>{" "}
+            <input
+              type="text"
+              name="Weight"
+              id="Weight"
+              required
+              className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
+              placeholder="Weight"
             />{" "}
           </div>{" "}
         </div>{" "}

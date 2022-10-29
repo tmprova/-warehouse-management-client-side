@@ -9,7 +9,7 @@ import auth from "../../../firebase/firebase.init";
 import Loading from "../../../Loading/Loading";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import axios from "axios";
+import axios from "axios";
 
 const LogIn = () => {
   const emailRef = useRef("");
@@ -47,9 +47,9 @@ const LogIn = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     await signInWithEmailAndPassword(email, password);
-    // const {data} = await axios.post('http://localhost:5000//login', {email});
-    // localStorage.setItem('accessToken', data.accessToken);
-    // console.log(data);
+    const { data } = await axios.post("http://localhost:5000/login", { email });
+    localStorage.setItem("accessToken", data.accessToken);
+    console.log(data);
     navigate(from, { replace: true });
   };
 

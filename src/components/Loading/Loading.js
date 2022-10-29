@@ -2,9 +2,10 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <div className="flex items-center">
+    <div className="flex justify-center items-center">
       <svg
-        className="animate-spin -ml-1 mr-3 h-5 w-5 text-purple-700"
+        className="animate-spin -ml-1 mr-3 h-16 w-16
+        border-4 rounded-full border-purple-600 text-purple-700"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
