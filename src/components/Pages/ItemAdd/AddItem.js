@@ -45,6 +45,9 @@ const AddItem = () => {
     fetch(url, {
       method: "POST",
       headers: {
+        // authorization: `${user[0].email} Bearer${localStorage.getItem(
+        //   "accessToken"
+        // )}`,
         "content-type": "application/json",
       },
       body: JSON.stringify({ data }),
