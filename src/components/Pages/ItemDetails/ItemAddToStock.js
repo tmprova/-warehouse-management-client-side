@@ -1,31 +1,8 @@
-import axios from "axios";
-import React, { useRef } from "react";
-import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import React from "react";
+
 import "react-toastify/dist/ReactToastify.css";
 
 const ItemAddToStock = ({ quantityUpgrade }) => {
-  // const { itemid } = useParams();
-  // console.log(itemid);
-  // console.log(params);
-  // const quantityData = params.Quatity;
-  // console.log(getQuantity);
-  const quantityRef = useRef("");
-
-  // const quantityUpgrade = async (e) => {
-  //   e.preventDefault();
-  //   const quantity = quantityRef.current.value;
-  //   console.log("quantity", quantity);
-  //   if (quantity >= 1) {
-  //     const updatedQuantity = parseInt(quantity) + parseInt(quantityData);
-  //     const url = `http://localhost:5000/inventory/${itemid}`;
-  //     const { data } = await axios.put(url, { updatedQuantity });
-  //     // if (data.modifiedCount === 1 || data.matchedCount === 1) {}
-  //     toast.success("Successfully Updated");
-  //   }
-  //   e.target.reset();
-  // };
-
   return (
     <div className="p-8 rounded border border-gray-200">
       {" "}
@@ -50,7 +27,6 @@ const ItemAddToStock = ({ quantityUpgrade }) => {
               max="10"
               name="add"
               id="name"
-              ref={quantityRef}
               required
               className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
               placeholder="Add to stock..."

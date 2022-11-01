@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 // import { isHtmlElement } from "react-router-dom/dist/dom";
 
 const InventoryDetails = ({ item, load, setLoad }) => {
-  console.log(item);
+  // console.log(item);
   const { _id, Name, IMG, Quatity, Transmission } = item;
 
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const InventoryDetails = ({ item, load, setLoad }) => {
     console.log(id);
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `http://localhost:5000/inventoryDetails/${id}`;
+      const url = `https://warehouse-server-render.onrender.com/inventoryDetails/${id}`;
       fetch(url, {
         method: "DELETE",
       })
@@ -52,26 +52,26 @@ const InventoryDetails = ({ item, load, setLoad }) => {
       <div className="flex justify-around">
         <button
           onClick={() => navigateToItemDetails(_id)}
-          className="inline-flex items-center justify-center w-full h-12 px-6 m-1 font-medium tracking-wide text-white transition duration-200 bg-gray-800 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none"
+          className="inline-flex items-center justify-center w-full h-12 px-6 m-1 font-medium tracking-wide text-white transition duration-200 bg-gray-800 rounded shadow-md hover:bg-green-900 focus:shadow-outline focus:outline-none"
         >
           Detail View
         </button>
 
         <button
           onClick={() => handleDelete(item._id)}
-          className="inline-flex items-center justify-center w-full h-12 px-6 m-1 font-medium tracking-wide text-white transition duration-200 bg-red-800 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none"
+          className="inline-flex items-center justify-center w-full h-12 px-6 m-1 font-medium tracking-wide text-white transition duration-200 bg-red-600 rounded shadow-md hover:bg-red-900 focus:shadow-outline focus:outline-none"
         >
           delete
         </button>
       </div>
 
       <div>
-        <Link
+        {/* <Link
           to="/additem"
           className="inline-flex items-center justify-center w-full h-12 px-6 mt-2 font-medium tracking-wide text-white transition duration-200 bg-blue-800 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none"
         >
           Add Item
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

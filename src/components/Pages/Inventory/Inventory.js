@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 // import useInventoryHook from "../../customHook/useInvenoryHook";
 import InventoryDetails from "./InventoryDetails";
 
@@ -7,7 +8,7 @@ const Inventory = () => {
   const [load, setLoad] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/inventory")
+    fetch("https://warehouse-server-render.onrender.com/inventory")
       .then((res) => res.json())
       .then((data) => setStorage(data));
   }, [load]);
@@ -52,6 +53,12 @@ const Inventory = () => {
           Sed ut perspiciatis unde omnis iste natus error sit voluptatem
           accusantium doloremque rem aperiam, eaque ipsa quae.
         </p>
+        <Link
+          to="/additem"
+          className="inline-flex items-center justify-center w-full h-12 px-6 mt-2 font-medium tracking-wide text-white transition duration-200 bg-blue-800 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none"
+        >
+          Add Item
+        </Link>
       </div>
       <div className="grid max-w-md gap-10 row-gap-8 lg:max-w-screen-lg sm:row-gap-10 lg:grid-cols-3 xl:max-w-screen-lg sm:mx-auto">
         {storage.map((item) => (

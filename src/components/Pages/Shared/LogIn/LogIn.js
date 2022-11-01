@@ -47,7 +47,10 @@ const LogIn = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     await signInWithEmailAndPassword(email, password);
-    const { data } = await axios.post("http://localhost:5000/login", { email });
+    const { data } = await axios.post(
+      "https://warehouse-server-render.onrender.com/login",
+      { email }
+    );
     localStorage.setItem("accessToken", data.accessToken);
     console.log(data);
     navigate(from, { replace: true });

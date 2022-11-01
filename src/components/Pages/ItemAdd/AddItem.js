@@ -41,7 +41,7 @@ const AddItem = () => {
       email: user[0]?.email,
     };
     console.log("data", data);
-    const url = "http://localhost:5000/inventory";
+    const url = "https://warehouse-server-render.onrender.com/inventory";
     fetch(url, {
       method: "POST",
       headers: {

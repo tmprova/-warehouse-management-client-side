@@ -2,15 +2,13 @@ import React from "react";
 import { toast } from "react-toastify";
 
 const ItemTable = (params) => {
-  console.log(params);
   const { item, load, setLoad } = params;
-  console.log(item);
 
   const handleDelete = (id) => {
     console.log(item);
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `http://localhost:5000/addedItems/${item._id}`;
+      const url = `https://warehouse-server-render.onrender.com/addedItems/${id}`;
       fetch(url, {
         method: "DELETE",
       })

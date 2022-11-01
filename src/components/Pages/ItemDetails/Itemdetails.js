@@ -30,7 +30,7 @@ const Itemdetails = () => {
 
   useEffect(() => {
     const getInventories = async () => {
-      const url = `http://localhost:5000/inventory/${itemid}`;
+      const url = `https://warehouse-server-render.onrender.com/inventory/${itemid}`;
       const { data } = await axios.get(url);
 
       setItems(data);
@@ -43,7 +43,7 @@ const Itemdetails = () => {
   const handleDelivery = (id) => {
     const getQuantity = async () => {
       const newUpdate = { Quatity };
-      const url = `http://localhost:5000/itemDelivered/${_id}`;
+      const url = `https://warehouse-server-render.onrender.com/itemDelivered/${_id}`;
       const { data } = await axios.put(url, newUpdate);
       console.log(data);
       if (data.modifiedCount) {
@@ -61,7 +61,7 @@ const Itemdetails = () => {
     console.log("quantity", quantity);
     if (quantity >= 1) {
       const updatedQuantity = parseInt(quantity) + parseInt(Quatity);
-      const url = `http://localhost:5000/itemAddToStock/${itemid}`;
+      const url = `https://warehouse-server-render.onrender.com/itemAddToStock/${itemid}`;
       fetch(url, {
         method: "PUT",
         headers: {

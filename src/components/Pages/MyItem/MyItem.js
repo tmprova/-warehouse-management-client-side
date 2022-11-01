@@ -15,26 +15,26 @@ const MyItem = () => {
     const showItems = async () => {
       const email = user[0]?.email;
       // console.log(email);
-      const url = `http://localhost:5000/addedItems?email=${email}`;
+      const url = `https://warehouse-server-render.onrender.com/addedItems?email=${email}`;
       const { data } = await axios.get(url, {
-        // headers: {
-        //   authorization: `${email} Bearer${localStorage.getItem(
-        //     "accessToken"
-        //   )}`,
-        // },
+        headers: {
+          authorization: `${email} Bearer ${localStorage.getItem(
+            "accessToken"
+          )}`,
+        },
       });
       setMyItems(data);
       console.log(data);
     };
     showItems();
-  }, [myItems, user]);
+  }, [user]);
 
   return (
     <div className="max-w-2xl mx-auto">
       <div className="relative  shadow-md sm:rounded-lg">
         <div className="p-4">
-          <label htmlFor="table-search" className="sr-only">
-            Search
+          <label htmlFor="user id" className="sr-only">
+            user id
           </label>
           <div className="relative mt-1">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-900 text-sm">

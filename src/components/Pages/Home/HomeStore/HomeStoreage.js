@@ -5,8 +5,8 @@ import HomeItem from "./HomeItem";
 const HomeStoreage = () => {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/inventory").then((res) =>
-      res.json().then((data) => setItems(data))
+    fetch("https://warehouse-server-render.onrender.com/inventory").then(
+      (res) => res.json().then((data) => setItems(data))
     );
   }, []);
 
