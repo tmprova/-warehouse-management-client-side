@@ -19,7 +19,7 @@ import auth from "../../firebase/firebase.init";
 const AddItem = () => {
   const [load, setLoad] = useState(false);
   const user = useAuthState(auth);
-  console.log(user[0].email);
+  // console.log(user[0].email);
   const handleAddItem = (e) => {
     e.preventDefault();
 
@@ -40,7 +40,7 @@ const AddItem = () => {
       Weight: e.target.Weight.value,
       email: user[0]?.email,
     };
-    console.log("data", data);
+    // console.log("data", data);
     const url = "https://warehouse-server-render.onrender.com/inventory";
     fetch(url, {
       method: "POST",
@@ -64,8 +64,8 @@ const AddItem = () => {
     <div className="p-8 rounded border border-gray-200">
       <h1 className="font-medium text-3xl">Add Invntory</h1>
       <p className="text-gray-600 mt-6">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos
-        dolorem vel cupiditate laudantium dicta.
+        “You don't stop riding when you get old, you get old when you stop
+        riding.”
       </p>
       <form onSubmit={handleAddItem}>
         <div className="mt-8 grid lg:grid-cols-2 gap-4">

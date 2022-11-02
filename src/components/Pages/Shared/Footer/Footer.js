@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <div className="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2">
-          <a
-            href="/"
+          <Link
+            to="/"
             aria-label="Go home"
             title="Company"
             className="inline-flex items-center"
@@ -27,17 +28,17 @@ const Footer = () => {
               <rect x="14" y="11" width="7" height="12" />
             </svg>
             <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-              Company
+              VinBike
             </span>
-          </a>
+          </Link>
           <div className="mt-6 lg:max-w-sm">
             <p className="text-sm text-gray-800">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam.
+              “Ride to meet life, don't wait for it.” “Ride alone with your bike
+              because sometimes you have to get lost to find yourself.” .
             </p>
             <p className="mt-4 text-sm text-gray-800">
-              Eaque ipsa quae ab illo inventore veritatis et quasi architecto
-              beatae vitae dicta sunt explicabo.
+              “If you look back on a trip and it makes you smile, it was worth
+              the while.” - Harley Davidson
             </p>
           </div>
         </div>
@@ -48,23 +49,23 @@ const Footer = () => {
           <div className="flex">
             <p className="mr-1 text-gray-800">Phone:</p>
             <a
-              href="tel:850-123-5021"
+              href="tel: 01322810867 "
               aria-label="Our phone"
               title="Our phone"
               className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >
-              850-123-5021
+              01322810867
             </a>
           </div>
           <div className="flex">
             <p className="mr-1 text-gray-800">Email:</p>
             <a
-              href="mailto:info@lorem.mail"
+              href="mailto:info@vinbike.mail"
               aria-label="Our email"
               title="Our email"
               className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >
-              info@lorem.mail
+              info@vinbike.mail
             </a>
           </div>
           <div className="flex">
@@ -77,7 +78,7 @@ const Footer = () => {
               title="Our address"
               className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >
-              312 Lovely Street, NY
+              Level-4, 34, Awal Centre, Banani, Dhaka
             </a>
           </div>
         </div>
@@ -87,7 +88,9 @@ const Footer = () => {
           </span>
           <div className="flex items-center mt-1 space-x-3">
             <a
-              href="/"
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-400"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" className="h-5">
@@ -95,7 +98,9 @@ const Footer = () => {
               </svg>
             </a>
             <a
-              href="/"
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-400"
             >
               <svg viewBox="0 0 30 30" fill="currentColor" className="h-6">
@@ -104,7 +109,9 @@ const Footer = () => {
               </svg>
             </a>
             <a
-              href="/"
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-400"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" className="h-5">
@@ -113,39 +120,40 @@ const Footer = () => {
             </a>
           </div>
           <p className="mt-4 text-sm text-gray-500">
-            Bacon ipsum dolor amet short ribs pig sausage prosciutto chicken
-            spare ribs salami.
+            You never have the wind with you — either it is against you or
+            you're having a good day
           </p>
         </div>
       </div>
       <div className="flex flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row">
         <p className="text-sm text-gray-600">
-          © Copyright 2020 Lorem Inc. All rights reserved.
+          © Copyright 2022 VinBike Inc. All rights reserved.
         </p>
         <ul className="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row">
           <li>
-            <a
-              href="/"
+            <Link
+              to={"/about"}
               className="text-sm text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400"
             >
               F.A.Q
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="/"
+            <Link
+              to={"/about"}
               className="text-sm text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400"
             >
               Privacy Policy
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
+              to={"/about"}
               href="/"
               className="text-sm text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400"
             >
               Terms &amp; Conditions
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

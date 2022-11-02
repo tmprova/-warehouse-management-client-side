@@ -5,7 +5,7 @@ const ItemTable = (params) => {
   const { item, load, setLoad } = params;
 
   const handleDelete = (id) => {
-    console.log(item);
+    // console.log(item);
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
       const url = `https://warehouse-server-render.onrender.com/addedItems/${id}`;
@@ -37,14 +37,14 @@ const ItemTable = (params) => {
       </td>
       <th
         scope="row"
-        className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+        className="px-4 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
       >
         {item.Name}
       </th>
-      <td className="px-6 py-4">{item.Engine}</td>
-      <td className="px-6 py-4">{item.Manufacturer}</td>
-      <td className="px-6 py-4 flex justify-center">{item.Quatity}</td>
-      <td className="px-6 py-4 text-right">
+      <td className="px-4 py-2">{item.Engine}</td>
+      <td className="px-4 py-2">{item.Manufacturer}</td>
+      <td className="py-6 flex justify-center items-center">{item.Quatity}</td>
+      <td className="px-4 py-2 text-right">
         <div className="flex justify-center">
           <button onClick={() => handleDelete(item._id)}>
             <svg

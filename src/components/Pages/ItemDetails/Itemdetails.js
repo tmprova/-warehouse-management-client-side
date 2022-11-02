@@ -45,7 +45,7 @@ const Itemdetails = () => {
       const newUpdate = { Quatity };
       const url = `https://warehouse-server-render.onrender.com/itemDelivered/${_id}`;
       const { data } = await axios.put(url, newUpdate);
-      console.log(data);
+      // console.log(data);
       if (data.modifiedCount) {
         toast.success("Successfully Delivered", { id: "test" });
       }
@@ -58,7 +58,7 @@ const Itemdetails = () => {
   const quantityUpgrade = (e) => {
     e.preventDefault();
     const quantity = e.target.add.value;
-    console.log("quantity", quantity);
+    // console.log("quantity", quantity);
     if (quantity >= 1) {
       const updatedQuantity = parseInt(quantity) + parseInt(Quatity);
       const url = `https://warehouse-server-render.onrender.com/itemAddToStock/${itemid}`;
@@ -72,7 +72,7 @@ const Itemdetails = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("updatedQuantity", data);
+          // console.log("updatedQuantity", data);
           if (data.modifiedCount === 1 || data.matchedCount === 1) {
             toast.success("Successfully Updated");
           }
@@ -92,19 +92,50 @@ const Itemdetails = () => {
             <div className="order-2 md:order-1">
               <h1 className="text-3xl">General Info:</h1>
               <hr />
-              <h1>Bike Name: {Name}</h1>
-              <h1>In Storage: {Quatity >= 1 ? Quatity : "Stock out"}</h1>
-              <h1>Origin: {Assembly ? Assembly : "Not Available"}</h1>
-              <h1>Bike Class: {Class}</h1>
-              <h1>Engine: {Engine}</h1>
-              <h1>Power: {Power}</h1>
-              <h1>Torque: {Torque}</h1>
-              <h1>Brakes: {Brakes}</h1>
-              <h1>Transmission: {Transmission}</h1>
-              <h1>Weight: {Weight}</h1>
-              <h1>Price: {Price}</h1>
-              <h1>Production: {Production}</h1>
-              <h1>Manufacturer: {Manufacturer}</h1>
+              <h1>
+                <span className="italic font-bold">Bike Name:</span> {Name}
+              </h1>
+              <h1>
+                <span className="italic font-bold">In Storage:</span>{" "}
+                {Quatity >= 1 ? Quatity : "Stock out"}
+              </h1>
+              <h1>
+                <span className="italic font-bold">Origin:</span>{" "}
+                {Assembly ? Assembly : "Not Available"}
+              </h1>
+              <h1>
+                <span className="italic font-bold">Bike Class:</span> {Class}
+              </h1>
+              <h1>
+                <span className="italic font-bold">Engine:</span> {Engine}
+              </h1>
+              <h1>
+                <span className="italic font-bold">Power:</span> {Power}
+              </h1>
+              <h1>
+                <span className="italic font-bold">Torque:</span> {Torque}
+              </h1>
+              <h1>
+                <span className="italic font-bold">Brakes:</span> {Brakes}
+              </h1>
+              <h1>
+                <span className="italic font-bold">Transmission:</span>{" "}
+                {Transmission}
+              </h1>
+              <h1>
+                <span className="italic font-bold">Weight:</span> {Weight}
+              </h1>
+              <h1>
+                <span className="italic font-bold">Price:</span> {Price}
+              </h1>
+              <h1>
+                <span className="italic font-bold">Production</span>:{" "}
+                {Production}
+              </h1>
+              <h1>
+                <span className="italic font-bold">Manufacturer:</span>{" "}
+                {Manufacturer}
+              </h1>
 
               <h1 className="text-3xl mt-4 mb-2">
                 Delivery from :

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 // import { isHtmlElement } from "react-router-dom/dist/dom";
 
@@ -14,7 +14,7 @@ const InventoryDetails = ({ item, load, setLoad }) => {
   };
 
   const handleDelete = (id) => {
-    console.log(id);
+    // console.log(id);
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
       const url = `https://warehouse-server-render.onrender.com/inventoryDetails/${id}`;

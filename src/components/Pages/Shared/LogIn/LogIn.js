@@ -4,7 +4,7 @@ import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase/firebase.init";
 import Loading from "../../../Loading/Loading";
 import { toast } from "react-toastify";
@@ -52,7 +52,7 @@ const LogIn = () => {
       { email }
     );
     localStorage.setItem("accessToken", data.accessToken);
-    console.log(data);
+    // console.log(data);
     navigate(from, { replace: true });
   };
 
@@ -189,6 +189,16 @@ const LogIn = () => {
               >
                 Reset Password
               </button>{" "}
+            </p>
+            <p className="text-md mt-1 font-bold">
+              Do not have an account?
+              <Link
+                to={"/signup"}
+                className="text-blue-400 hover:text-blue-600 mx-1"
+              >
+                Please Sign up
+              </Link>
+              <p>{errorShown}</p>
             </p>
           </form>
         </div>
