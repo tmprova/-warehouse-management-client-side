@@ -8,7 +8,7 @@ const HomeStats = () => {
           <div>
             <p className="mb-2 text-lg font-bold">Old World</p>
             <p className="text-gray-700">
-              Remember,Happiness a Way of Travel... Not A Destination....
+              Remember,Happiness is a Way of Travel... Not A Destination....
             </p>
           </div>
           <div>
