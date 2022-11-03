@@ -15,7 +15,7 @@ const ItemTable = (params) => {
         .then((res) => res.json())
         .then((data) => {
           setLoad(!load);
-          toast.success("succesfully deleted");
+          toast.success("succesfully deleted,refresh the page");
         });
     }
   };
